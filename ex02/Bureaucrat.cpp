@@ -1,11 +1,12 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include <iostream>
 #include <limits>
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
 : name_(name), grade_(grade) {
-	if	   (grade < highest_grade_)  throw GradeTooHighException();
-	else if(grade > lowest_grade_)   throw GradeTooLowException();
+	if	   (grade < HIGHEST_GRADE)  throw GradeTooHighException();
+	else if(grade > LOWEST_GRADE)   throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
@@ -21,15 +22,9 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException() throw() {}
-Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
-
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return "Bureaucrat: grade too high";
 }
-
-Bureaucrat::GradeTooLowException::GradeTooLowException() throw() {}
-Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return "Bureaucrat: grade too low";
@@ -42,16 +37,16 @@ int			Bureaucrat::getGrade() const { return grade_; }
 void Bureaucrat::incrementGrade(int grade) {
 	long tmp = static_cast<long>(grade_) - static_cast<long>(grade);
 	validateOverflow(tmp);
-	if(tmp < highest_grade_) throw GradeTooHighException();
-	if(tmp > lowest_grade_)  throw GradeTooLowException();
+	if(tmp < HIGHEST_GRADE) throw GradeTooHighException();
+	if(tmp > LOWEST_GRADE)  throw GradeTooLowException();
 	grade_ = static_cast<int>(tmp);
 }
 
 void Bureaucrat::decrementGrade(int grade) {
 	long tmp = static_cast<long>(grade_) + static_cast<long>(grade);
 	validateOverflow(tmp);
-	if(tmp < highest_grade_) throw GradeTooHighException();
-	if(tmp > lowest_grade_)  throw GradeTooLowException();
+	if(tmp < HIGHEST_GRADE) throw GradeTooHighException();
+	if(tmp > LOWEST_GRADE)  throw GradeTooLowException();
 	grade_ = static_cast<int>(tmp);
 }
 
@@ -63,7 +58,22 @@ void Bureaucrat::validateOverflow(long grade) {
 }
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const& value) {
-	out << value.getName() << ", bureaucrat grade"
+	out << value.getName() << ", bureaucrat grade "
 		<< value.getGrade() << ".";
 	return out;
+}
+
+void Bureaucrat::signForm(AForm& form) {
+    if (form.getIsSigned()) {
+        std::cerr << name_ << " couldn't sign " << form.getName()
+                  << " because already signed" << std::endl;
+        return;
+    }
+    try {
+        form.beSigned(*this);
+        std::cerr << name_ << " signed " << form.getName() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << name_ << " couldn't sign " << form.getName()
+                  << " because " << e.what() << std::endl;
+    }
 }

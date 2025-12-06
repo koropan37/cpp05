@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include <sstream>
+#include <iostream>
 
 #define BLACK   "\033[0;30m"
 #define RED     "\033[0;31m"
@@ -24,45 +24,49 @@ void printColor(std::string const& str, std::string const& color) {
 int main(void) {
 	printColor("CONSTRUCTOR", CYAN);
     try {
-        Bureaucrat b("kim", 0);
+        Bureaucrat b("Trump", 0);
         std::cout << b << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 1);
+        Bureaucrat b("Trump", 1);
         std::cout << b << std::endl;
 		std::cout << b.getName() << std::endl;
 		std::cout << b.getGrade() << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 151);
+        Bureaucrat b("Trump", 151);
         std::cout << b << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
 	std::cout << std::endl;
 	printColor("Increment", GREEN);
-	    try {
-        Bureaucrat b("kim", 42);
+	try {
+        Bureaucrat b("Trump", 42);
         std::cout << b << std::endl;
       	b.incrementGrade(1);
       	std::cout << b << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 1);
+        Bureaucrat b("Trump", 1);
         std::cout << b << std::endl;
       	b.incrementGrade(2147483647);
       	std::cout << b << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 150);
+        Bureaucrat b("Trump", 150);
         std::cout << b << std::endl;
       	b.incrementGrade(1);
       	std::cout << b << std::endl;
@@ -72,16 +76,17 @@ int main(void) {
 	  }
 	std::cout << std::endl;
 	printColor("Decrement", YELLOW);
-	    try {
-        Bureaucrat b("kim", 42);
+	try {
+        Bureaucrat b("Trump", 42);
         std::cout << b << std::endl;
       	b.decrementGrade(1);
       	std::cout << b << std::endl;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 1);
+        Bureaucrat b("Trump", 1);
         std::cout << b << std::endl;
       	b.decrementGrade(1);
       	std::cout << b << std::endl;
@@ -90,8 +95,9 @@ int main(void) {
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
+	  std::cout << std::endl;
 	try {
-        Bureaucrat b("kim", 150);
+        Bureaucrat b("Trump", 150);
         std::cout << b << std::endl;
 		b.decrementGrade(-2147483648);
       } catch (std::exception &e) {

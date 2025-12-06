@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 #include <limits>
 
@@ -57,11 +58,22 @@ void Bureaucrat::validateOverflow(long grade) {
 }
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const& value) {
-	out << value.getName() << ", bureaucrat grade"
+	out << value.getName() << ", bureaucrat grade "
 		<< value.getGrade() << ".";
 	return out;
 }
 
 void Bureaucrat::signForm(Form& form) {
-	
+    if (form.getIsSigned()) {
+        std::cerr << name_ << " couldn't sign " << form.getName()
+                  << " because already signed" << std::endl;
+        return;
+    }
+    try {
+        form.beSigned(*this);
+        std::cerr << name_ << " signed " << form.getName() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << name_ << " couldn't sign " << form.getName()
+                  << " because " << e.what() << std::endl;
+    }
 }

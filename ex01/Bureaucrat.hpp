@@ -1,11 +1,12 @@
 #ifndef BUREAUCRAT_HPP_
 #define BUREAUCRAT_HPP_
 
+class Form;
+
 #include <string>
 #include <iostream>
 #include <exception>
-
-class Form;
+//#include "Form.hpp"
 
 #define HIGHEST_GRADE  1
 #define LOWEST_GRADE 150
@@ -31,8 +32,8 @@ class  Bureaucrat {
 		virtual const char* what() const throw();
 	};
 
-	std::string getName(void) const;
-	int			getGrade(void) const;
+	std::string getName() const;
+	int			getGrade() const;
 
 	void incrementGrade(int grade);
 	void decrementGrade(int grade);

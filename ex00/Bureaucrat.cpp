@@ -57,7 +57,7 @@ void Bureaucrat::validateOverflow(long grade) {
 }
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const& value) {
-	out << value.getName() << ", bureaucrat grade"
+	out << value.getName() << ", bureaucrat grade "
 		<< value.getGrade() << ".";
 	return out;
 }
