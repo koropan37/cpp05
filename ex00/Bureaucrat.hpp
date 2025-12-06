@@ -5,24 +5,22 @@
 #include <iostream>
 #include <exception>
 
+#define HIGHEST_GRADE  1
+#define LOWEST_GRADE 150
+
 class  Bureaucrat {
  private:
 	std::string name_;
 	int 		grade_;
 
-	static const int highest_grade_ = 1;
-	static const int lowest_grade_ = 150;
-
  public:
-	Bureaucrat(const std::string& name = "", int grade = lowest_grade_ );
+	Bureaucrat(const std::string& name = "", int grade = LOWEST_GRADE );
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);
 	~Bureaucrat();
 
 	class GradeTooHighException : public std::exception {
 	 public:
-	  	GradeTooHighException() throw();
-    	virtual ~GradeTooHighException() throw();
 		virtual const char* what() const throw();
 	};
 	// class はデフォルトでは private なので public:をつけて外部から呼び出せるように
@@ -30,8 +28,6 @@ class  Bureaucrat {
 
 	class GradeTooLowException : public std::exception {
 	 public:
-		GradeTooLowException() throw();
-    	virtual ~GradeTooLowException() throw();
 		virtual const char* what() const throw();
 	};
 
