@@ -24,7 +24,7 @@ class Form {
 	~Form();
 
 	void beSigned(const Bureaucrat& bureaucrat);
-	
+
 	class GradeTooHighException : public std::exception {
 	 public:
 		virtual const char* what() const throw();
