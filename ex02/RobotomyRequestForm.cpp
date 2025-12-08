@@ -6,16 +6,13 @@
 #define EXEC_GRADE 45
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), target_(target) {}
+: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE, target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-: AForm(other), target_(other.target_) {}
+: AForm(other) {}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
-	if(this != &other) {
-		AForm::operator=(other);
-		target_ = other.target_;
-	}
+	if(this != &other) AForm::operator=(other);
 	return *this;
 }
 
@@ -24,8 +21,8 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 void RobotomyRequestForm::execAction() const {
 	std::cout << "boboboobo.boobobo" <<std::endl;
 	if(std::rand() % 2)
-		std::cout << target_ << " has been robotomized successfully";
+		std::cout << this->getTarget() << " has been robotomized successfully";
 	else
-		std::cout << target_ << " robotomy failed";
+		std::cout << this->getTarget() << " robotomy failed";
 	std::cout << std::endl;
 }

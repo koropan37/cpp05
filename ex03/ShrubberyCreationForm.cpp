@@ -9,16 +9,16 @@
 #define WHITE   "\033[0;37m"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), target_(target) {}
+: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE, target) {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name, const std::string& target)
+: AForm(name, SIGN_GRADE, EXEC_GRADE, target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-: AForm(other), target_(other.target_) {}
+: AForm(other) {}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-	if(this != &other) {
-		AForm::operator=(other);
-		target_ = other.target_;
-	}
+	if(this != &other) AForm::operator=(other);
 	return *this;
 }
 
@@ -45,9 +45,13 @@ return std::string(
 }
 
 void ShrubberyCreationForm::execAction() const {
-    std::ofstream ofs((target_ + "_shrubbery").c_str());
+    std::ofstream ofs((getTarget() + "_shrubbery").c_str());
     if(!ofs) throw std::runtime_error("Error: fail to open file");
 
     ofs << "\n" << printtree() << std::endl;
     return ;
+}
+
+AForm* ShrubberyCreationForm::create(const std::string& name, const std::string& target) const {
+    return new ShrubberyCreationForm(name, target);
 }

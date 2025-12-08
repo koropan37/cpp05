@@ -1,4 +1,4 @@
-NAME = AForm
+NAME = Intern
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
@@ -10,6 +10,7 @@ SRCS = \
 		PresidentialPardonForm.cpp \
 		RobotomyRequestForm.cpp \
 		ShrubberyCreationForm.cpp \
+		Intern.cpp \
 
 
 OBJS = $(SRCS:%.cpp=%.o)

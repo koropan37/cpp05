@@ -1,11 +1,12 @@
 #include "AForm.hpp"
 #include <iostream>
 
-AForm::AForm(const std::string& name, int sign_grade, int exec_grade)
+AForm::AForm(const std::string& name, int sign_grade, int exec_grade, std::string target)
 : name_(name),
  is_signed_(false),
  sign_grade_(sign_grade),
- exec_grade_(exec_grade) {
+ exec_grade_(exec_grade),
+ target_(target) {
     if(sign_grade_ < HIGHEST_GRADE || exec_grade_ < HIGHEST_GRADE)
         throw GradeTooHighException();
     else if (exec_grade_ > LOWEST_GRADE || exec_grade_ > LOWEST_GRADE)
@@ -16,14 +17,16 @@ AForm::AForm(const AForm& other)
 : name_(other.name_),
   is_signed_(other.is_signed_),
   sign_grade_(other.sign_grade_),
-  exec_grade_(other.exec_grade_) {}
+  exec_grade_(other.exec_grade_),
+  target_(other.target_) {}
 
 AForm& AForm::operator=(const AForm& other) {
 	if(this != &other) {
 		name_  = other.name_;
-		is_signed_ = other.is_signed_;
+		is_signed_  = other.is_signed_;
         sign_grade_ = other.sign_grade_;
         exec_grade_ = other.exec_grade_;
+        target_     = other.target_;
 	}
 	return *this;
 }
@@ -52,6 +55,7 @@ std::string AForm::getName() const { return name_; }
 bool AForm::getIsSigned() const { return is_signed_; }
 int AForm::getSignGrade() const { return sign_grade_; }
 int AForm::getExecGrade() const { return exec_grade_; }
+std::string AForm::getTarget() const { return target_; }
 
 void AForm::execute(Bureaucrat const& bureaucrat) const {
     if(!is_signed_)

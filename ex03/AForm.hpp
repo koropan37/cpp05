@@ -14,11 +14,13 @@ class AForm {
 	bool 		is_signed_;
 	int  		sign_grade_;
 	int  		exec_grade_;
+	std::string target_;
 
  public:
 	AForm(const std::string& name = "",
 		 int sign_grade = LOWEST_GRADE,
-		 int exec_grade = LOWEST_GRADE);
+		 int exec_grade = LOWEST_GRADE,
+		 std::string target = "");
 	AForm(const AForm& other);
 	AForm& operator=(const AForm& other);
 	virtual ~AForm();
@@ -44,9 +46,12 @@ class AForm {
 	bool 		getIsSigned() const;
 	int 		getSignGrade() const;
 	int 		getExecGrade() const;
+	std::string	getTarget() const;
 
 	virtual void execAction() const = 0;
-	void 		execute(Bureaucrat const& bureaucrat) const;
+    void 		execute(Bureaucrat const& bureaucrat) const;
+
+	virtual AForm* create(const std::string& name, const std::string& target) const = 0;
 };
 
 std::ostream& operator<<(std::ostream &out, const AForm &value);

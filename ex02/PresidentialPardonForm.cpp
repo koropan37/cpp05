@@ -5,21 +5,18 @@
 #define EXEC_GRADE 5
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), target_(target) {}
+: AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE, target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-: AForm(other), target_(other.target_) {}
+: AForm(other) {}
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
-	if(this != &other) {
-		AForm::operator=(other);
-		target_ = other.target_;
-	}
+	if(this != &other) AForm::operator=(other);
 	return *this;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::execAction() const {
-	std::cout << target_ << "has been pardoned by Zaphod Beeblebrox." <<std::endl;
+	std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." <<std::endl;
 }

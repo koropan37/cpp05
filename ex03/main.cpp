@@ -2,6 +2,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -27,125 +28,131 @@ void printColor(std::string const& str, std::string const& color) {
 }
 
 int main(void) {
-	std::srand(std::time(0)); //rand()を初期化する。これがないと乱数が同じになりやすい
+	std::srand(std::time(0));
 	printColor("Constracutor", CYAN);
 	try {
-        Bureaucrat b("Trump", 42);
-		RobotomyRequestForm r("rob");
-		PresidentialPardonForm p("pre");
-		ShrubberyCreationForm s("shr");
-        std::cout << b << std::endl;
-        std::cout << r << std::endl;
-		std::cout << p << std::endl;
-		std::cout << s << std::endl;
-		b.signForm(r);
-		std::cout << r << std::endl;
+		Intern i1;
+		AForm* form = i1.makeForm("shrubbery creation", "home");
+		std::cout << *form << std::endl;
+		Intern i2(i1);
+		std::cout << *form << std::endl;
+		Intern i3;
+		i3 = i1;
+		std::cout << *form << std::endl;
+		delete form;
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
 	  }
-	  std::cout << std::endl;
+	std::cout << std::endl;
 
-	printColor("Robotomy", YELLOW);
+	printColor("Intern Grade 42", BLUE);
 	try {
-        Bureaucrat b("Trump", 42);
-		RobotomyRequestForm r("rob");
-        std::cout << b << std::endl;
-        std::cout << r << std::endl;
-		b.signForm(r);
-		b.executeForm(r);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	try {
-        Bureaucrat b("Trump", 150);
-		RobotomyRequestForm r("rob");
-        std::cout << b << std::endl;
-        std::cout << r << std::endl;
-		b.signForm(r);
-		b.executeForm(r);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	try {
-        Bureaucrat b("Trump", 50);
-		RobotomyRequestForm r("rob");
-        std::cout << b << std::endl;
-        std::cout << r << std::endl;
-		b.signForm(r);
-		b.executeForm(r);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
+		Bureaucrat b("Trump", 42);
+		Intern intern;
+		AForm* form = intern.makeForm("shrubbery creation", "home");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
 
-	printColor("Presidential", MAGENTA);
+		form = intern.makeForm("robotomy request", "tommy");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("presidential pardon", "guiltiness");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("nothing", "invalid");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+		} catch (std::exception& e) {
+		std::cout << RED << e.what() << RESET << std::endl;
+    }
+	std::cout << std::endl;
+	printColor("Intern Grade 1", GREEN);
 	try {
-        Bureaucrat b("Trump", 5);
-		PresidentialPardonForm p("pre");
-        std::cout << b << std::endl;
-        std::cout << p << std::endl;
-		b.signForm(p);
-		b.executeForm(p);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
+		Bureaucrat b("Trump", 1);
+		Intern intern;
+		AForm* form = intern.makeForm("shrubbery creation", "home");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("robotomy request", "tommy");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("presidential pardon", "guiltiness");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+		} catch (std::exception& e) {
+		std::cout << RED << e.what() << RESET << std::endl;
+    }
+
+	printColor("Intern Grade 150", RED);
 	try {
-        Bureaucrat b("Trump", 150);
-		PresidentialPardonForm p("pre");
-        std::cout << b << std::endl;
-        std::cout << p << std::endl;
-		b.signForm(p);
-		b.executeForm(p);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	try {
-        Bureaucrat b("Trump", 20);
-		PresidentialPardonForm p("pre");
-        std::cout << b << std::endl;
-        std::cout << p << std::endl;
-		b.signForm(p);
-		b.executeForm(p);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	printColor("Shrubbery", GREEN);
-	try {
-        Bureaucrat b("Trump", 42);
-		ShrubberyCreationForm s("shr");
-        std::cout << b << std::endl;
-        std::cout << s << std::endl;
-		b.signForm(s);
-		b.executeForm(s);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	try {
-        Bureaucrat b("Trump", 150);
-		ShrubberyCreationForm s("ubb");
-        std::cout << b << std::endl;
-        std::cout << s << std::endl;
-		b.signForm(s);
-		b.executeForm(s);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
-	try {
-        Bureaucrat b("Trump", 138);
-		ShrubberyCreationForm s("ery");
-        std::cout << b << std::endl;
-        std::cout << s << std::endl;
-		b.signForm(s);
-		b.executeForm(s);
-      } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-	  }
-	  std::cout << std::endl;
+		Bureaucrat b("Trump", 150);
+		Intern intern;
+		AForm* form = intern.makeForm("shrubbery creation", "home");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("robotomy request", "tommy");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+	std::cout << std::endl;
+
+		form = intern.makeForm("presidential pardon", "guiltiness");
+		if (form) {
+			std::cout << *form << std::endl;
+			b.signForm(*form);
+			b.executeForm(*form);
+			delete form;
+		}
+		} catch (std::exception& e) {
+		std::cout << RED << e.what() << RESET << std::endl;
+    }
+	std::cout << std::endl;
+
 }

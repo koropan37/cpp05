@@ -5,8 +5,6 @@
 
 class PresidentialPardonForm : public AForm {
  private:
-	std::string target_;
-
 	void execAction() const;
 
  public:
