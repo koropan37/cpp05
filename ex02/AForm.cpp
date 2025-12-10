@@ -9,7 +9,7 @@ AForm::AForm(const std::string& name, int sign_grade, int exec_grade, std::strin
  target_(target) {
     if(sign_grade_ < HIGHEST_GRADE || exec_grade_ < HIGHEST_GRADE)
         throw GradeTooHighException();
-    else if (exec_grade_ > LOWEST_GRADE || exec_grade_ > LOWEST_GRADE)
+    if (sign_grade_ > LOWEST_GRADE || exec_grade_ > LOWEST_GRADE)
         throw GradeTooLowException();
 }
 
