@@ -191,6 +191,13 @@ int main(void) {
 		std::cout << f << std::endl;
 		f.beSigned(b);
 		std::cout << f << std::endl;
+      } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+	  }
+	try {
+		Bureaucrat b("Trump", 42);
+		Form f("form", 42, 42);
+        std::cout << f << std::endl;
 		b.decrementGrade(1);
 		f.beSigned(b);
 		std::cout << f << std::endl;

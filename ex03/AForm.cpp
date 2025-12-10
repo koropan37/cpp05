@@ -34,6 +34,8 @@ AForm& AForm::operator=(const AForm& other) {
 AForm::~AForm() {}
 
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
+    if (is_signed_)
+        throw AlreadySignedException();
     if(bureaucrat.getGrade() > sign_grade_)
         throw GradeTooLowException();
     is_signed_ = true;
@@ -45,6 +47,10 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
     return "AForm: grade too low";
+}
+
+const char* AForm::AlreadySignedException::what() const throw() {
+    return "Form: already signed";
 }
 
 const char* AForm::UnsignedException::what() const throw() {

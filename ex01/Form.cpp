@@ -31,6 +31,8 @@ Form& Form::operator=(const Form& other) {
 Form::~Form() {}
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
+    if (is_signed_)
+        throw AlreadySignedException();
     if(bureaucrat.getGrade() > sign_grade_)
         throw GradeTooLowException();
     is_signed_ = true;
@@ -42,6 +44,10 @@ const char* Form::GradeTooHighException::what() const throw() {
 
 const char* Form::GradeTooLowException::what() const throw() {
     return "Form: grade too low";
+}
+
+const char* Form::AlreadySignedException::what() const throw() {
+    return "Form: already signed";
 }
 
 std::string Form::getName() const { return name_; }
