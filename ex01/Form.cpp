@@ -20,10 +20,7 @@ Form::Form(const Form& other)
 
 Form& Form::operator=(const Form& other) {
 	if(this != &other) {
-		name_  = other.name_;
 		is_signed_ = other.is_signed_;
-        sign_grade_ = other.sign_grade_;
-        exec_grade_ = other.exec_grade_;
 	}
 	return *this;
 }

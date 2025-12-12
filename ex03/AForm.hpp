@@ -10,11 +10,11 @@ class Bureaucrat;
 
 class AForm {
  private:
-	std::string name_;
-	bool 		is_signed_;
-	int  		sign_grade_;
-	int  		exec_grade_;
-	std::string target_;
+	const std::string name_;
+	bool 			  is_signed_;
+	const int  		  sign_grade_;
+	const int  		  exec_grade_;
+	std::string 	  target_;
 
  public:
 	AForm(const std::string& name = "",

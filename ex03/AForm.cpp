@@ -22,10 +22,7 @@ AForm::AForm(const AForm& other)
 
 AForm& AForm::operator=(const AForm& other) {
 	if(this != &other) {
-		name_  = other.name_;
 		is_signed_  = other.is_signed_;
-        sign_grade_ = other.sign_grade_;
-        exec_grade_ = other.exec_grade_;
         target_     = other.target_;
 	}
 	return *this;
